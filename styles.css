@@ -7,7 +7,7 @@ html{
   align-items: center;
   width: 100%;
   height: 100%;
-  background-color: #FF4B4B;
+  background-color: black;
 }
 
 .stagger-visualizer {
@@ -15,14 +15,13 @@ html{
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  width: 20rem;
-  height: 20rem;
+  width: 17rem;
+  height: 17rem;
 }
 
 .stagger-visualizer div {
   /*position: absolute;*/
   width: 1rem;
   height: 1rem;
-  border: 1px solid #FFF;
   background-color: #FFF;
 }
