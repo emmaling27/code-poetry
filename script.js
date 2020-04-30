@@ -18,14 +18,16 @@ const urAGirl = '#f8b9d4'
 
 let traitColors = [];
 let traitGenders = [];
-let structuredColors = [];
+let halfBoyHalfGirl = [];
+let justATomboy = [];
 for (let i = 0; i < numberOfElements; i++) {
   const elt = document.createElement('div');
   elt.setAttribute("id", i);
   fragment.appendChild(elt);
   traitColors.push(_.sample(colors))
   traitGenders.push(_.sample([urABoy, urAGirl])) // choosing not to abstract away here to emphasize the gender binary
-  i % 17 < 9 ? structuredColors.push(urAGirl) : structuredColors.push(urABoy);
+  i % 17 < 9 ? halfBoyHalfGirl.push(urAGirl) : halfBoyHalfGirl.push(urABoy);
+  i % 17 < 13 ? justATomboy.push(urAGirl) : justATomboy.push(urABoy);
 }
 staggerVisualizerEl.appendChild(fragment);
 
@@ -35,13 +37,16 @@ const whatYouSee =
   (_whoIAm, yourBiases, _whoTheWorldThinksIAm) => traitGenders[yourBiases];
 const tryingToConform = 
   (_whoIAm, theWorldsExpectations, _whoTheWorldThinksIAm) => 
-  structuredColors[theWorldsExpectations];
+  halfBoyHalfGirl[theWorldsExpectations];
+const almostThere = 
+  (_whoIAm, theWorldsExpectations, _whoTheWorldThinksIAm) => 
+  justATomboy[theWorldsExpectations];
 
 const staggersAnimation = anime.timeline({
   targets: '.stagger-visualizer div',
   easing: 'easeInOutSine',
   delay: anime.stagger(50),
-  loop: true,
+  loop: false,
   autoplay: false
 })
 .add({
@@ -73,20 +78,14 @@ const staggersAnimation = anime.timeline({
   translateX: anime.stagger('.25rem', {grid: grid, from: 'center', axis: 'x'}),
   translateY: anime.stagger('.25rem', {grid: grid, from: 'center', axis: 'y'}),
   rotate: 0,
-  // scaleX: 2.5,
-  // scaleY: .25,
   delay: anime.stagger(4, {from: 'center'})
 })
 .add({
-  rotate: anime.stagger([90, 0], {grid: grid, from: 'center'}),
-  delay: anime.stagger(50, {grid: grid, from: 'center'})
-})
-.add({
+  backgroundColor: justATomboy,
   translateX: 0,
   translateY: 0,
   scale: .5,
   scaleX: 1,
-  rotate: 180,
   duration: 1000,
   delay: anime.stagger(100, {grid: grid, from: 'center'})
 })
@@ -95,5 +94,19 @@ const staggersAnimation = anime.timeline({
   scale: 1,
   delay: anime.stagger(20, {grid: grid, from: 'center'})
 })
+.add({
+  backgroundColor: ourTrueColors,
+  translateX: anime.stagger(1, {grid: grid, from: 'center', axis: 'x'}),
+  translateY: anime.stagger(1, {grid: grid, from: 'center', axis: 'y'}),
+  rotateZ: anime.stagger([0, 90], {grid: grid, from: 'center', axis: 'x'}),
+  delay: anime.stagger(100, {grid: grid, from: 'center'}),
+  easing: 'easeInOutQuad'
+})
+.add({
+  rotate: anime.stagger([90, 0], {grid: grid, from: 'center'}),
+  delay: anime.stagger(50, {grid: grid, from: 'center'})
+})
+
+
 
 staggersAnimation.play();
