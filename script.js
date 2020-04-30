@@ -5,23 +5,32 @@ const col = grid[0];
 const row = grid[1];
 const numberOfElements = col * row;
 
-const red = '#FF6663';
-const orange = '#FEB144';
-const yellow = '#FDFD97';
-const green = '#9EE09E';
-const blue = '#9EC1CF';
-const purple = '#CC99C9';
-const colors = [red, orange, yellow, green, blue, purple];
 
-let box_colors = []
+const red = '#FF0900';
+const orange = '#FF7F00';
+const yellow = '#FFEF00';
+const green = '#00F11D';
+const blue = '#0079FF';
+const violet = '#A800FF';
+const colors = [red, orange, yellow, green, blue, violet];
+const urABoy = '#89cff0'
+const urAGirl = '#f8b9d4'
+
+let trait_colors = [];
+let trait_genders = [];
 for (let i = 0; i < numberOfElements; i++) {
   const elt = document.createElement('div');
   elt.setAttribute("id", i);
   fragment.appendChild(elt);
-  box_colors.push(_.sample(colors))
+  trait_colors.push(_.sample(colors))
+  trait_genders.push(_.sample([urABoy, urAGirl])) // choosing not to abstract away here to emphasize the gender binary
 }
-
 staggerVisualizerEl.appendChild(fragment);
+
+const ourTrueColors = 
+  (_yourBiases, whoIAm, _whoTheWorldThinksIAm) => trait_colors[whoIAm];
+const whatYouSee = 
+  (_whoIAm, yourBiases, _whoTheWorldThinksIAm) => trait_genders[yourBiases];
 
 const staggersAnimation = anime.timeline({
   targets: '.stagger-visualizer div',
@@ -31,9 +40,7 @@ const staggersAnimation = anime.timeline({
   autoplay: false
 })
 .add({
-  backgroundColor: function(el, i, l) {
-    return box_colors[i]
-  },
+  backgroundColor: ourTrueColors,
   translateX: [
     {value: anime.stagger('-.1rem', {grid: grid, from: 'center', axis: 'x'}) },
     {value: anime.stagger('.1rem', {grid: grid, from: 'center', axis: 'x'}) }
@@ -52,11 +59,12 @@ const staggersAnimation = anime.timeline({
   delay: anime.stagger(8, {from: 'last'})
 })
 .add({
+  backgroundColor: whatYouSee,
   translateX: anime.stagger('.25rem', {grid: grid, from: 'center', axis: 'x'}),
   translateY: anime.stagger('.25rem', {grid: grid, from: 'center', axis: 'y'}),
   rotate: 0,
-  scaleX: 2.5,
-  scaleY: .25,
+  // scaleX: 2.5,
+  // scaleY: .25,
   delay: anime.stagger(4, {from: 'center'})
 })
 .add({
