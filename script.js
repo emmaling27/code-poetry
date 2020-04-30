@@ -16,21 +16,26 @@ const colors = [red, orange, yellow, green, blue, violet];
 const urABoy = '#89cff0'
 const urAGirl = '#f8b9d4'
 
-let trait_colors = [];
-let trait_genders = [];
+let traitColors = [];
+let traitGenders = [];
+let structuredColors = [];
 for (let i = 0; i < numberOfElements; i++) {
   const elt = document.createElement('div');
   elt.setAttribute("id", i);
   fragment.appendChild(elt);
-  trait_colors.push(_.sample(colors))
-  trait_genders.push(_.sample([urABoy, urAGirl])) // choosing not to abstract away here to emphasize the gender binary
+  traitColors.push(_.sample(colors))
+  traitGenders.push(_.sample([urABoy, urAGirl])) // choosing not to abstract away here to emphasize the gender binary
+  i % 17 < 9 ? structuredColors.push(urAGirl) : structuredColors.push(urABoy);
 }
 staggerVisualizerEl.appendChild(fragment);
 
 const ourTrueColors = 
-  (_yourBiases, whoIAm, _whoTheWorldThinksIAm) => trait_colors[whoIAm];
+  (_yourBiases, whoIAm, _whoTheWorldThinksIAm) => traitColors[whoIAm];
 const whatYouSee = 
-  (_whoIAm, yourBiases, _whoTheWorldThinksIAm) => trait_genders[yourBiases];
+  (_whoIAm, yourBiases, _whoTheWorldThinksIAm) => traitGenders[yourBiases];
+const tryingToConform = 
+  (_whoIAm, theWorldsExpectations, _whoTheWorldThinksIAm) => 
+  structuredColors[theWorldsExpectations];
 
 const staggersAnimation = anime.timeline({
   targets: '.stagger-visualizer div',
@@ -54,12 +59,17 @@ const staggersAnimation = anime.timeline({
   delay: anime.stagger(100, {grid: grid, from: 'center'})
 })
 .add({
+  backgroundColor: whatYouSee,
+  delay: anime.stagger(100, {grid: grid, from: 'center'})
+})
+.add({
+  backgroundColor: ourTrueColors,
   translateX: () => anime.random(-10, 10),
   translateY: () => anime.random(-10, 10),
   delay: anime.stagger(8, {from: 'last'})
 })
 .add({
-  backgroundColor: whatYouSee,
+  backgroundColor: tryingToConform,
   translateX: anime.stagger('.25rem', {grid: grid, from: 'center', axis: 'x'}),
   translateY: anime.stagger('.25rem', {grid: grid, from: 'center', axis: 'y'}),
   rotate: 0,
