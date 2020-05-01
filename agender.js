@@ -47,7 +47,7 @@ const breakMeApart = axis => [
   {value: anime.stagger('.1rem', {grid: traits, from: 'center', axis: axis}) }
 ];
 
-const inTheTimeIWasBorn = 1000;
+const ofMyBirth = 1500;
 const meStripMeToTheCore = .5;
 
 const theInevitable = anime.stagger(100, {grid: traits, from: 'center'});
@@ -58,15 +58,17 @@ const foundAWayToPass = axis =>
 const backToWhoIAm = axis => 
   anime.stagger(1, { grid: traits, from: 'center', axis: axis });
 const nothing = anime.stagger(50, { grid: traits, from: 'center' });
-const meLikeAJewel = anime.stagger([90, 0], { grid: traits, from: 'center' });
+const meLikeAJewel = anime.stagger([180, 0], { grid: traits, from: 'center' });
 const likeTheWorldHasExplodedBecauseItHas = 
   anime.stagger([0, 90], { grid: traits, from: 'center', axis: 'x' });
+const theChoice = anime.stagger(100, { from: 'first' });
+
 
 const imAGirl = imABoy = 0;
 const canIJustBeMyself = 1;
 const mostOfSociety = 'easeInOutSine';
-
 const me = 'easeInOutQuad';
+
 const genderTroubles = anime.timeline({
   targets: '.gender-presentation div',
   easing: mostOfSociety,
@@ -79,7 +81,7 @@ const genderTroubles = anime.timeline({
   backgroundColor: ourTrueColors,
   translateX: breakMeApart(femme),
   translateY: breakMeApart(masc),
-  duration: inTheTimeIWasBorn,
+  duration: ofMyBirth,
   scale: meStripMeToTheCore,
   delay: theInevitable
 })
@@ -99,6 +101,7 @@ const genderTroubles = anime.timeline({
   backgroundColor: tryingToConform,
   translateX: foundAWayToPass(femme),
   translateY: foundAWayToPass(masc),
+  delay: theChoice
 })
 .add({
   backgroundColor: justATomboy,
@@ -106,7 +109,7 @@ const genderTroubles = anime.timeline({
   translateY: imABoy,
   scale: meStripMeToTheCore,
   scaleX: canIJustBeMyself,
-  duration: inTheTimeIWasBorn,
+  duration: ofMyBirth,
   delay: theInevitable
 })
 .add({
