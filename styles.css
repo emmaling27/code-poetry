@@ -10,7 +10,7 @@ html{
   background-color: black;
 }
 
-.stagger-visualizer {
+.gender-presentation {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -19,7 +19,7 @@ html{
   height: 17rem;
 }
 
-.stagger-visualizer div {
+.gender-presentation div {
   /*position: absolute;*/
   width: 1rem;
   height: 1rem;
