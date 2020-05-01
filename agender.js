@@ -1,9 +1,9 @@
 const genderRepresentation = document.querySelector('.gender-presentation');
 const fragment = document.createDocumentFragment();
-const age = 17;
-const traits = [age, age];
-const masculinity = traits[0];
-const femininity = traits[1];
+const age = 22;
+const traitSpace = [age, age];
+const masculinity = traitSpace[0];
+const femininity = traitSpace[1];
 const whole = masculinity * femininity;
 
 const red = '#FF0900';
@@ -12,27 +12,27 @@ const yellow = '#FFEF00';
 const green = '#00F11D';
 const blue = '#0079FF';
 const violet = '#A800FF';
-const colors = [red, orange, yellow, green, blue, violet];
+const traits = [red, orange, yellow, green, blue, violet];
 const urABoy = '#89cff0'
 const urAGirl = '#f8b9d4'
 const femme = 'x';
 const masc = 'y';
 
-let traitColors = [];
+let piecesOfMe = [];
 let traitGenders = [];
 let halfBoyHalfGirl = [];
 let justATomboy = [];
 for (let i = 0; i < whole; i++) {
   fragment.appendChild(document.createElement('div'));
-  traitColors.push(_.sample(colors))
+  piecesOfMe.push(_.sample(traits))
   traitGenders.push(_.sample([urABoy, urAGirl]))
-  i % age < 9 ? halfBoyHalfGirl.push(urAGirl) : halfBoyHalfGirl.push(urABoy);
-  i % age < 13 ? justATomboy.push(urAGirl) : justATomboy.push(urABoy);
+  i % age < age / 2 ? halfBoyHalfGirl.push(urAGirl) : halfBoyHalfGirl.push(urABoy);
+  i % age < age * 3 / 4 ? justATomboy.push(urAGirl) : justATomboy.push(urABoy);
 }
 genderRepresentation.appendChild(fragment);
 
 const ourTrueColors = 
-  (_yourBiases, whoIAm, _whoTheWorldThinksIAm) => traitColors[whoIAm];
+  (_yourBiases, whoIAm, _whoTheWorldThinksIAm) => piecesOfMe[whoIAm];
 const whatYouSee = 
   (_whoIAm, yourBiases, _whoTheWorldThinksIAm) => traitGenders[yourBiases];
 const tryingToConform = 
@@ -43,25 +43,25 @@ const almostThere =
   justATomboy[theWorldsExpectations];
 
 const breakMeApart = axis => [
-  {value: anime.stagger('-.1rem', {grid: traits, from: 'center', axis: axis}) },
-  {value: anime.stagger('.1rem', {grid: traits, from: 'center', axis: axis}) }
+  {value: anime.stagger('-.1rem', {grid: traitSpace, from: 'center', axis: axis}) },
+  {value: anime.stagger('.1rem', {grid: traitSpace, from: 'center', axis: axis}) }
 ];
 
 const ofMyBirth = 1500;
 const meStripMeToTheCore = .5;
 
-const theInevitable = anime.stagger(100, {grid: traits, from: 'center'});
+const theInevitable = anime.stagger(100, {grid: traitSpace, from: 'center'});
 const getRidOfThisThingIDontKnowWhatItIs = () => anime.random(-10, 10);
 const theCategorization = anime.stagger(8, {from: 'last'});
 const foundAWayToPass = axis => 
-  anime.stagger('.25rem', { grid: traits, from: 'center', axis: axis });
+  anime.stagger('.25rem', { grid: traitSpace, from: 'center', axis: axis });
 const backToWhoIAm = axis => 
-  anime.stagger(1, { grid: traits, from: 'center', axis: axis });
-const nothing = anime.stagger(50, { grid: traits, from: 'center' });
-const meLikeAJewel = anime.stagger([180, 0], { grid: traits, from: 'center' });
+  anime.stagger(1, { grid: traitSpace, from: 'center', axis: axis });
+const nothing = anime.stagger(50, { grid: traitSpace, from: 'center' });
+const meLikeAJewel = anime.stagger([180, 0], { grid: traitSpace, from: 'center' });
 const likeTheWorldHasExplodedBecauseItHas = 
-  anime.stagger([0, 90], { grid: traits, from: 'center', axis: 'x' });
-const theChoice = anime.stagger(100, { from: 'first' });
+  anime.stagger([0, 90], { grid: traitSpace, from: 'center', axis: 'x' });
+const theChoice = anime.stagger(80, { from: 'first' });
 
 
 const imAGirl = imABoy = 0;
