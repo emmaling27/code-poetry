@@ -1,6 +1,6 @@
 const genderRepresentation = document.querySelector('.gender-presentation');
 const fragment = document.createDocumentFragment();
-const age = 22;
+const age = 21;
 const traitSpace = [age, age];
 const masculinity = traitSpace[0];
 const femininity = traitSpace[1];
@@ -54,14 +54,14 @@ const theInevitable = anime.stagger(100, {grid: traitSpace, from: 'center'});
 const getRidOfThisThingIDontKnowWhatItIs = () => anime.random(-10, 10);
 const theCategorization = anime.stagger(8, {from: 'last'});
 const foundAWayToPass = axis => 
-  anime.stagger('.25rem', { grid: traitSpace, from: 'center', axis: axis });
+  anime.stagger('.25rem', {grid: traitSpace, from: 'center', axis: axis});
 const backToWhoIAm = axis => 
-  anime.stagger(1, { grid: traitSpace, from: 'center', axis: axis });
-const nothing = anime.stagger(50, { grid: traitSpace, from: 'center' });
-const meLikeAJewel = anime.stagger([180, 0], { grid: traitSpace, from: 'center' });
+  anime.stagger(1, {grid: traitSpace, from: 'center', axis: axis});
+const nothing = anime.stagger(50, {grid: traitSpace, from: 'center'});
+const meLikeAJewel = anime.stagger([180, 0], {grid: traitSpace, from: 'center'});
 const likeTheWorldHasExplodedBecauseItHas = 
-  anime.stagger([0, 90], { grid: traitSpace, from: 'center', axis: 'x' });
-const theChoice = anime.stagger(80, { from: 'first' });
+  anime.stagger([0, 90], {grid: traitSpace, from: 'center', axis: 'x'});
+const theChoice = anime.stagger(80, {from: 'first'});
 
 
 const imAGirl = imABoy = 0;
@@ -104,18 +104,18 @@ const genderTroubles = anime.timeline({
   delay: theChoice
 })
 .add({
-  backgroundColor: justATomboy,
+  backgroundColor: almostThere,
   translateX: imAGirl,
   translateY: imABoy,
   scale: meStripMeToTheCore,
   scaleX: canIJustBeMyself,
-  duration: ofMyBirth,
+  duration: ofMyBirth / 2,
   delay: theInevitable
 })
 .add({
   scaleY: canIJustBeMyself,
   scale: canIJustBeMyself,
-  delay: theInevitable
+  delay: nothing
 })
 .add({
   backgroundColor: ourTrueColors,
