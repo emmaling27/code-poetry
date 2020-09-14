@@ -25,3 +25,7 @@ html{
   height: 1rem;
   background-color: #FFF;
 }
+
+path {
+  opacity: 0;
+}
